@@ -2,8 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './index.css';
-import App from './App';
-import Prueba from './Prueba';
+//import App from './App';
+//paginas creadas
+import Sesion from './Pages/iniciar_sesion';
+import PPrincipal from './Pages/PantallaPrincipal';
+import PGuia from './Pages/PantallaGuia';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -11,8 +14,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<App/>}/>
-        <Route path='/otro' element={<Prueba/>}/>
+        <Route path='/' element={<PPrincipal />} />
+        <Route path='/sesion' element={<Sesion />} />
+        <Route path='/guia' element={<PGuia/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
