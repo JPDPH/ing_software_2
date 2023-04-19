@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './index.css';
 //import App from './App';
 //paginas creadas
+import Pruebas from './Pages/Pruebas';
 import Sesion from './Pages/iniciar_sesion';
 import PPrincipal from './Pages/PantallaPrincipal';
 import PGuia from './Pages/PantallaGuia';
@@ -19,6 +20,7 @@ root.render(
         <Route path='/sesion' element={<Sesion />} />
         <Route path='/guia' element={<PGuia/>}/>
         <Route path='/cliente' element={<PPrincipal2/>}/>
+        <Route path='/pruebas' element={<Pruebas />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

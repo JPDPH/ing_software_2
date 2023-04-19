@@ -20,7 +20,7 @@ const BarraNavega = () => {
                                         <a class="nav-link" href="#">About</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/guia">Support</a>
+                                        <a class="nav-link" href="#">Support</a>
                                     </li>
                                 </ul>
                             </div>
