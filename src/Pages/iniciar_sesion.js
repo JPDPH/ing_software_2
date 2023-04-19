@@ -1,4 +1,4 @@
-import BarraNavega from "./BarraNavega";
+import BarraIniciar from "./BarraIniciar";
 import React, { useEffect, useState } from "react"
 import {UNSAFE_DataRouterStateContext, useNavigate } from "react-router-dom"
 
@@ -26,7 +26,7 @@ const Sesion = () => {
 
     return(
         <div>
-            <BarraNavega></BarraNavega>
+            <BarraIniciar></BarraIniciar>
             <div className="container">
                 <div>
                     <h1>Iniciar Sesion</h1>

@@ -2,8 +2,9 @@ import "./css/style.css"
 import React from "react";
 
 const Lista = (props) => {
-    
-        <div>
+        return(
+            <div>
+            <br></br>
             <div className="container">
                 <div className="row">
                     <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3 shadow">
@@ -42,6 +43,9 @@ const Lista = (props) => {
                 <br />
             </div>
         </div>
+
+        );
+        
         
     
 }
