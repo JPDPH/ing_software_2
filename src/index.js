@@ -8,6 +8,7 @@ import Sesion from './Pages/iniciar_sesion';
 import PPrincipal from './Pages/PantallaPrincipal';
 import PGuia from './Pages/PantallaGuia';
 import reportWebVitals from './reportWebVitals';
+import PPrincipal2 from './Pages/PantallaPrincipal2';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,6 +18,7 @@ root.render(
         <Route path='/' element={<PPrincipal />} />
         <Route path='/sesion' element={<Sesion />} />
         <Route path='/guia' element={<PGuia/>}/>
+        <Route path='/cliente' element={<PPrincipal2/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

@@ -6,6 +6,7 @@ const PGuia = () =>{
         <div>
             <BarraGuia></BarraGuia>
             <div>
+                
                 <Clientes></Clientes>
                 <Clientes></Clientes>
                 <Clientes></Clientes>

@@ -3,7 +3,8 @@ import {Form, Button} from "react-bootstrap";
 
 const FormularioCantidad = () => {
     return(
-        <div>
+        <div className="container">
+
             <Form.Group className="mb-2">
                 <Form.Label>Lugar Turistico</Form.Label>
                 <Form.Select>
@@ -32,7 +33,7 @@ const FormularioCantidad = () => {
                     <option>Moto</option>
                 </Form.Select>
             </Form.Group>
-            
+            <Button variant="warning">Filtrar</Button>
             
         </div>
 

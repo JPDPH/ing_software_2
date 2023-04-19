@@ -1,15 +1,17 @@
+
+
 import React, { useState } from 'react';
-import BarraNavega from "./BarraNavega";
+import BarraNavega2 from "./BarraNavega2";
 import FormularioCantidad from './FormularioCantidad';
 
 
 
 
-const PPrincipal = () => {
+const PPrincipal2 = () => {
 
     return(
         <div>
-            <BarraNavega></BarraNavega>
+            <BarraNavega2></BarraNavega2>
             <FormularioCantidad></FormularioCantidad>
             
         </div>
@@ -19,12 +21,4 @@ const PPrincipal = () => {
 
 
 }
-export default PPrincipal;
-
-
-
-
-
-
-
-
+export default PPrincipal2;
