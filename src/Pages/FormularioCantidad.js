@@ -22,7 +22,7 @@ const FormularioCantidad = (props) => {
     };
     
     const enviarData = () => {
-        const lista = {lugar, cantP, tipoV};
+        let lista = [lugar, cantP, tipoV];
         props.datosRecividos(lista);
     }
 
