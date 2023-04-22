@@ -2,20 +2,58 @@ import BarraIniciar from "./BarraIniciar";
 import React, { useEffect, useState } from "react"
 import {UNSAFE_DataRouterStateContext, useNavigate } from "react-router-dom"
 
-const usuarioC = ["alberto","123", "renato","321"]
-const usuarioG = ["jesus","ola", "yaru","contra"]
+//const usuarioC = ["alberto","123", "renato","321"]
+//const usuarioG = ["jesus","ola", "yaru","contra"]
 
 const Sesion = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
+    const [usuarioC, setListaUsernameC] = useState([])
+    const [passwordc, setListaPasswordC] = useState([])
+
+    const [usuarioG, setListaUsernameG] = useState([])
+    const [passwordG, setListaPasswordG] = useState([])
+    //backend solicitar
+    const httpObtenerUsernameC = async () =>{
+        const resp = await fetch("http://localhost:4444/carreras")
+        const data = await resp.json()
+        setListaUsernameC(data)
+    }
+
+    const httpObtenerPasswordC = async () =>{
+        const resp = await fetch("http://localhost:4444/carreras")
+        const data = await resp.json()
+        setListaPasswordC(data)
+    }
+
+    const httpObtenerUsernameG = async () =>{
+        const resp = await fetch("http://localhost:4444/carreras")
+        const data = await resp.json()
+        console.log(data)
+        setListaUsernameG(data)
+    }
+
+    const httpObtenerPasswordG = async () =>{
+        const resp = await fetch("http://localhost:4444/carreras")
+        const data = await resp.json()
+        console.log(data)
+        setListaPasswordG(data)
+    }
+    useEffect(()=>{
+        httpObtenerUsernameC()
+        httpObtenerPasswordC()
+        httpObtenerUsernameG()
+        httpObtenerPasswordG()
+    },[])
+
     const navigate = useNavigate();
 
     const loginOnClick = () => {
         let passw = document.getElementById("passwor").value;
-        if(usuarioC.includes(passw) && usuarioC.includes(username)){
+        if(usuarioC.includes(username) && passwordc.includes(passw)){
             navigate("/cliente")
-        }else if(usuarioG.includes(username) && usuarioG.includes(passw)){
+        }else if(usuarioG.includes(username) && passwordG.includes(passw)){
             navigate("/guia")
         }else{
             alert("No existe este usuario")
