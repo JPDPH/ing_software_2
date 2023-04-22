@@ -10,7 +10,7 @@ const PPrincipal = () => {
     const [listadoViajes, setListadoViajes]=useState([])
 
     const httpObtenerViajes = async () =>{
-        const resp = await fetch("http://localhost:4444/carreras")
+        const resp = await fetch("http://localhost:4447/tour")
         const data = await resp.json()
         setListadoViajes(data)
     }

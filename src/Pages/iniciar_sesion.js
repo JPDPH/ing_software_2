@@ -6,61 +6,58 @@ import { useNavigate } from "react-router-dom"
 //const usuarioG = ["jesus","ola", "yaru","contra"]
 
 const Sesion = () => {
+    let sesionI = " "
+
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
     const [usuarioC, setListaUsernameC] = useState([])
-    const [passwordc, setListaPasswordC] = useState([])
 
     const [usuarioG, setListaUsernameG] = useState([])
-    const [passwordG, setListaPasswordG] = useState([])
     //backend solicitar
     const httpObtenerUsernameC = async () =>{
-        const resp = await fetch("http://localhost:4444/carreras")
+        const resp = await fetch("http://localhost:4447/turista")
         const data = await resp.json()
+        
         setListaUsernameC(data)
     }
 
-    const httpObtenerPasswordC = async () =>{
-        const resp = await fetch("http://localhost:4444/carreras")
-        const data = await resp.json()
-        setListaPasswordC(data)
-    }
-
     const httpObtenerUsernameG = async () =>{
-        const resp = await fetch("http://localhost:4444/carreras")
+        const resp = await fetch("http://localhost:4447/guia")
         const data = await resp.json()
-        console.log(data)
+        
         setListaUsernameG(data)
     }
 
-    const httpObtenerPasswordG = async () =>{
-        const resp = await fetch("http://localhost:4444/carreras")
-        const data = await resp.json()
-        console.log(data)
-        setListaPasswordG(data)
-    }
+
+
     useEffect(()=>{
         httpObtenerUsernameC()
-        httpObtenerPasswordC()
         httpObtenerUsernameG()
-        httpObtenerPasswordG()
+
     },[])
 
     const navigate = useNavigate();
 
     const loginOnClick = () => {
         let passw = document.getElementById("passwor").value;
-        if(usuarioC.includes(username) && passwordc.includes(passw)){
-            navigate("/cliente")
-        }else if(usuarioG.includes(username) && passwordG.includes(passw)){
-            navigate("/guia")
-        }else{
-            alert("No existe este usuario")
+        console.log(passw)
+        for(let i=0; i<usuarioC.length;i++){
+            if(usuarioC[i].nombre ==username && usuarioC[i].contrasena ==passw){
+                navigate("/cliente")
+                sesionI = usuarioC[i].id
+            }
+        }
+        for(let i=0; i<usuarioG.length;i++){
+            if(usuarioG[i].nombre ==username && usuarioG[i].contrasena ==passw){
+                navigate("/guia")
+                sesionI = usuarioG[i].id
+            }
         }
 
+
     }
-    console.log(username)
+    
 
     return(
         <div>
