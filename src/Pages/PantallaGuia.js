@@ -1,5 +1,6 @@
 import BarraGuia from "./BarraGuia";
 import Clientes from "./Clientes";
+import React, { useState, useEffect } from 'react';
 
 const PGuia = () =>{
 

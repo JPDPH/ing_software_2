@@ -1,6 +1,6 @@
 import BarraIniciar from "./BarraIniciar";
 import React, { useEffect, useState } from "react"
-import {UNSAFE_DataRouterStateContext, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 //const usuarioC = ["alberto","123", "renato","321"]
 //const usuarioG = ["jesus","ola", "yaru","contra"]
