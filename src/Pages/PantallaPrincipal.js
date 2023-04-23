@@ -1,18 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import BarraNavega from "./BarraNavega";
 import FormularioCantidad from './FormularioCantidad';
-
+import axios from 'axios';
 
 
 
 const PPrincipal = () => {
 
     const [listadoViajes, setListadoViajes]=useState([])
+    const [datosRecividos, setDatosReciv]=useState([]) 
+
+    const obtnerData = (datos) => {
+        console.log(datos);
+        setDatosReciv(datos) 
+      };
 
     const httpObtenerViajes = async () =>{
-        const resp = await fetch("http://localhost:4447/tour")
-        const data = await resp.json()
-        setListadoViajes(data)
+        
+        axios.post('http://localhost:4447/tour', datosRecividos)
+      .then((response) => {
+        console.log(response.data);
+        setListadoViajes(response.data)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+        
     }
 
     useEffect(()=>{
@@ -22,7 +35,7 @@ const PPrincipal = () => {
     return(
         <div>
             <BarraNavega></BarraNavega>
-            <FormularioCantidad></FormularioCantidad>
+            <FormularioCantidad datosRecividos={obtnerData}></FormularioCantidad>
             
         </div>
 

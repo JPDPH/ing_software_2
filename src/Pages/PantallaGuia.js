@@ -12,8 +12,8 @@ const PGuia = () =>{
    
     //lista de clientes 
     const [listadoClientes, setListadoClientes]=useState([])
-    const [zona, setZona]=useState("")
-    const [vehiculo, setVehiculo]=useState("")
+    const [zona, setZona]=useState([])
+    const [vehiculo, setVehiculo]=useState([])
     const [tour, setTuor] = useState([])
 
     const httpObtenerTour = async () =>{
@@ -43,13 +43,14 @@ const PGuia = () =>{
     }
 
     useEffect(()=>{
-        httpObtenerClientes();
-        httpObtenerZona();
-        httpObtenerVehiculo();
+        httpObtenerClientes()
+        httpObtenerZona()
+        httpObtenerVehiculo()
         httpObtenerTour()
     },[])
-
-    
+    let listaInfoCliente = []
+    console.log(listadoClientes)
+    console.log(tour)
     let aux = 0
     for(let i = 0; i<tour.length; i++){
         if(tour[i].id_guia==usuarioActual[0].id){
@@ -63,15 +64,13 @@ const PGuia = () =>{
             aux4 = i
         }
     }
-    console.log(listadoClientes)
+
     
-    let listaInfoCliente = []
     listaInfoCliente[0] = {n:listadoClientes[aux4].nombre, 
         a:listadoClientes[aux4].apellido,
         nu:listadoClientes[aux4].telefono,
         }
     
-   
     
 
     
