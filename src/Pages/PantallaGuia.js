@@ -51,25 +51,27 @@ const PGuia = () =>{
     let listaInfoCliente = []
     console.log(listadoClientes)
     console.log(tour)
+    
     let aux = 0
     for(let i = 0; i<tour.length; i++){
         if(tour[i].id_guia==usuarioActual[0].id){
             aux = i
         }
     }
-
+    console.log(tour[aux])
     let aux4 = 0
     for(let i = 0; i<listadoClientes.length; i++){
         if(tour[aux].id_turista==listadoClientes[i].id){
             aux4 = i
         }
     }
-
-    
-    listaInfoCliente[0] = {n:listadoClientes[aux4].nombre, 
+listaInfoCliente[0] = {n:listadoClientes[aux4].nombre, 
         a:listadoClientes[aux4].apellido,
         nu:listadoClientes[aux4].telefono,
         }
+    
+
+    
     
     
 

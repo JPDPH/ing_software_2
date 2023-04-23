@@ -25,6 +25,7 @@ const FormularioCantidad = (props) => {
         let lista = [lugar, cantP, tipoV];
         props.datosRecividos(lista);
     }
+    
 
     return(
         <div className="container">

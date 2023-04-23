@@ -53,7 +53,7 @@ const Sesion = (props) => {
         for(let i=0; i<usuarioC.length;i++){
             if(usuarioC[i].nombre ==username && usuarioC[i].contrasena ==passw){
                 //sesionI[0] = {id : usuarioC[i].id, vehiculo: usuarioC[i].id_vehiculo }
-                props.recibirUsuario(sesionI)
+                //props.recibirUsuario(sesionI)
                 navigate("/cliente")
                 
             }
