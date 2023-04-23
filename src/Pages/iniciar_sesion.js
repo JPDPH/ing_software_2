@@ -5,8 +5,14 @@ import { useNavigate } from "react-router-dom"
 //const usuarioC = ["alberto","123", "renato","321"]
 //const usuarioG = ["jesus","ola", "yaru","contra"]
 
-const Sesion = () => {
-    let sesionI = " "
+let sesionI = []
+
+export function obtenerUsuario(){
+    const data = sesionI
+    return data;
+}
+
+const Sesion = (props) => {
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -39,19 +45,24 @@ const Sesion = () => {
 
     const navigate = useNavigate();
 
+    
+
     const loginOnClick = () => {
         let passw = document.getElementById("passwor").value;
         console.log(passw)
         for(let i=0; i<usuarioC.length;i++){
             if(usuarioC[i].nombre ==username && usuarioC[i].contrasena ==passw){
+                //sesionI[0] = {id : usuarioC[i].id, vehiculo: usuarioC[i].id_vehiculo }
+                props.recibirUsuario(sesionI)
                 navigate("/cliente")
-                sesionI = usuarioC[i].id
+                
             }
         }
         for(let i=0; i<usuarioG.length;i++){
             if(usuarioG[i].nombre ==username && usuarioG[i].contrasena ==passw){
+                sesionI[0] = {id : usuarioG[i].id, vehiculo: usuarioG[i].id_vehiculo }
                 navigate("/guia")
-                sesionI = usuarioG[i].id
+                
             }
         }
 
