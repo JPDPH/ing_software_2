@@ -10,6 +10,7 @@ import PPrincipal from './Pages/PantallaPrincipal';
 import PGuia from './Pages/PantallaGuia';
 import reportWebVitals from './reportWebVitals';
 import PPrincipal2 from './Pages/PantallaPrincipal2';
+import IngresarDatos from './Pages/IngresarDatos';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -21,6 +22,7 @@ root.render(
         <Route path='/guia' element={<PGuia/>}/>
         <Route path='/cliente' element={<PPrincipal2/>}/>
         <Route path='/pruebas' element={<Pruebas />} />
+        <Route path= '/registro' element={<IngresarDatos/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

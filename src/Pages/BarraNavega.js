@@ -1,3 +1,4 @@
+import { Button } from 'react-bootstrap';
 
 const BarraNavega = () => {
     return(
@@ -32,8 +33,9 @@ const BarraNavega = () => {
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link" href="/sesion">Iniciar Sesion</a>
+                            <Button bsStyle="danger">Danger</Button>
                         </li>
-                    </ul>
+                    </ul>   
                 </div>
 
             </div>

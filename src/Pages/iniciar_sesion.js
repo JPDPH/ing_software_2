@@ -1,4 +1,4 @@
-import BarraIniciar from "./BarraIniciar";
+import { Card, Form, Button, Container, Row, Col, Image } from 'react-bootstrap'
 import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
@@ -12,89 +12,110 @@ export function obtenerUsuario(){
     return data;
 }
 
-const Sesion = (props) => {
+const LoginPage = () => {
+    const [nombre, setNombre] = useState("")
+    const [apellido, setApellido] = useState("")
+    const [correo, setCorreo] = useState("")
+    const [contrasena, setContrasena] = useState("")
 
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
-
-    const [usuarioC, setListaUsernameC] = useState([])
-
-    const [usuarioG, setListaUsernameG] = useState([])
-    //backend solicitar
-    const httpObtenerUsernameC = async () =>{
-        const resp = await fetch("http://localhost:4447/turista")
-        const data = await resp.json()
-        
-        setListaUsernameC(data)
-    }
-
-    const httpObtenerUsernameG = async () =>{
-        const resp = await fetch("http://localhost:4447/guia")
-        const data = await resp.json()
-        
-        setListaUsernameG(data)
-    }
-
-
-
-    useEffect(()=>{
-        httpObtenerUsernameC()
-        httpObtenerUsernameG()
-
-    },[])
-
-    const navigate = useNavigate();
-
+    const navigate = useNavigate()
     
+    
+    function navegar (){
+        navigate('/Login')
+    }
 
-    const loginOnClick = () => {
-        let passw = document.getElementById("passwor").value;
-        console.log(passw)
-        for(let i=0; i<usuarioC.length;i++){
-            if(usuarioC[i].nombre ==username && usuarioC[i].contrasena ==passw){
-                //sesionI[0] = {id : usuarioC[i].id, vehiculo: usuarioC[i].id_vehiculo }
-                //props.recibirUsuario(sesionI)
-                navigate("/cliente")
-                
-            }
+    const httpguardarUsuario = async (nombre, apellido , correo , contrasena) => {
+        const data = {
+            nombre : nombre,
+            apellido : apellido,
+            correo : correo,
+            contrasena : contrasena
+
         }
-        for(let i=0; i<usuarioG.length;i++){
-            if(usuarioG[i].nombre ==username && usuarioG[i].contrasena ==passw){
-                sesionI[0] = {id : usuarioG[i].id, vehiculo: usuarioG[i].id_vehiculo }
-                navigate("/guia")
-                
+        const resp = await fetch(`http://localhost:4447/usuarios`,
+            {
+                method : "POST",
+                body : JSON.stringify(data),
+                headers : {
+                    "content-Type" : "application/json"
+                }
             }
+        )
+        const dataResp = await resp.json()
+        console.log(dataResp)
+        if (dataResp.error !== "") {
+            console.error(dataResp.error)
         }
 
-
+        
     }
-    
+    const guardarUsuario = (nombre , apellido , correo , contrasena) => {console.log(
+        `nombre: ${nombre} apellido: ${apellido} correo: ${correo} password: ${contrasena}`)
+        httpguardarUsuario(nombre , apellido , correo , contrasena)
+    }
 
-    return(
-        <div>
-            <BarraIniciar></BarraIniciar>
-            <div className="container">
-                <div>
-                    <h1>Iniciar Sesion</h1>
-                    <div>
-                        <label className="form-label">
-                            Usuario
-                        </label>
-                        <input className="form-control" value={username} onChange={(evt)=>{setUsername(evt.target.value)}}/>
-                    </div>
-                    <div>
-                        <label className="form-label" value={password} onChange={(evt)=>{setPassword(evt.target.value)}}>
-                        Password
-                        </label>
-                        <input id="passwor" type="password" className="form-control"  />
-                    </div>
-                </div>
-                <button className="btn btn-primary mt-2" type="button" onClick={loginOnClick}>Login</button>
-                
-            </div>
-        </div>
-    );
+   /*const httpLogin = async (correo, password) => {
+        const resp = await fetch(` ${ RUTA_BACKEND}/login`, {
+        method : "POST",
+        body : JSON.stringify({
+            correo: correo,
+            contrasena : contrasena
+        }),
+        headers : {"Content-type": "application/json"
+    }
+    })
+    const data = await resp.json()
+     if(data.error === ""){
+        //login fue correcto
+        localStorage.setItem( "TOKEN" , data.token)
+        navigate('/Principal')
 
+     }else{
+        //login fue incorrecto
+     }
+     */
+
+
+return <Container>
+    <Row className='mt-4'>
+        <Col></Col>
+        <Col>
+            <Card>
+                <Card.Body>
+                    <h2>Login</h2>
+                    <Image src={ `./imagenes/logo.png` }/>
+                    <Form>
+                        <Form.Group>
+                            <Form.Label>
+                                Correo
+                            </Form.Label>
+                            <Form.Control 
+                            type='email'
+                            value= { correo }
+                            onChange = { (e) => setCorreo(e.target.value) }/>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>
+                                Password
+                            </Form.Label>
+                            <Form.Control type='password'
+                            value= { contrasena }
+                            onChange = { (e) => setContrasena(e.target.value) }/>
+                        </Form.Group>
+                        <Button className='mt-3' variant='warning'
+                        onClick = { () =>{}}>Login</Button>
+                        <p></p>
+                        <Button className='mt-3' variant='warning'
+                        onClick = { navegar }>Crear cuenta</Button>
+                    </Form>
+                </Card.Body>
+            </Card>
+        </Col>
+        <Col></Col>
+    </Row>
+</Container>
 }
 
-export default Sesion;
+
+export default LoginPage
