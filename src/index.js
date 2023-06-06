@@ -7,7 +7,7 @@ import './index.css';
 import Pruebas from './Pages/Pruebas';
 import Sesion from './Pages/iniciar_sesion';
 import PPrincipal from './Pages/PantallaPrincipal';
-import PGuia from './Pages/PantallaGuia';
+import PGuia from './Pages/GuiaTuristico/PantallaGuia';
 import reportWebVitals from './reportWebVitals';
 import PPrincipal2 from './Pages/PantallaPrincipal2';
 import IngresarDatos from './Pages/IngresarDatos';

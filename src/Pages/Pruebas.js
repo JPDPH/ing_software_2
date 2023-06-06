@@ -1,7 +1,7 @@
-import BarraNavega from "./BarraNavega";
+import BarraNavega from "./Barras/BarraNavega";
 import Pruebas2 from "./Pruebas2";
 import React, { useState,useEffect  } from "react";
-import Lista from "./ListaViajes";
+import Lista from "./Datos/ListaViajes";
 import userEvent from "@testing-library/user-event";
 
 

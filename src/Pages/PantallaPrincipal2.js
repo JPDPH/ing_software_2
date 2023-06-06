@@ -1,7 +1,7 @@
 
 
 import React, { useState } from 'react';
-import BarraNavega2 from "./BarraNavega2";
+import BarraNavega2 from "./Barras/BarraNavega2";
 import FormularioCantidad from './FormularioCantidad';
 
 

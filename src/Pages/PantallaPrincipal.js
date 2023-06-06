@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import BarraNavega from "./BarraNavega";
+import BarraNavega from "./Barras/BarraNavega";
 import FormularioCantidad from './FormularioCantidad';
 import axios from 'axios';
+import ListaViajes from "./Datos/ListaViajes"
 
 
 
 const PPrincipal = () => {
-
+    let borrar
     const [listadoViajes, setListadoViajes]=useState([])
     const [datosRecividos, setDatosReciv]=useState([]) 
 
@@ -36,7 +37,7 @@ const PPrincipal = () => {
         <div>
             <BarraNavega></BarraNavega>
             <FormularioCantidad datosRecividos={obtnerData}></FormularioCantidad>
-            
+            <ListaViajes></ListaViajes>
         </div>
 
 

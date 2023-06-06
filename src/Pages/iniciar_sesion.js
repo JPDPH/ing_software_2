@@ -1,9 +1,10 @@
 import { Card, Form, Button, Container, Row, Col, Image } from 'react-bootstrap'
 import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-
+import BarraIniciar from './Barras/BarraIniciar'
 //const usuarioC = ["alberto","123", "renato","321"]
 //const usuarioG = ["jesus","ola", "yaru","contra"]
+import "../Clases/cliente"
 
 let sesionI = []
 
@@ -13,8 +14,6 @@ export function obtenerUsuario(){
 }
 
 const LoginPage = () => {
-    const [nombre, setNombre] = useState("")
-    const [apellido, setApellido] = useState("")
     const [correo, setCorreo] = useState("")
     const [contrasena, setContrasena] = useState("")
 
@@ -22,13 +21,11 @@ const LoginPage = () => {
     
     
     function navegar (){
-        navigate('/Login')
+        navigate('/registro')
     }
 
-    const httpguardarUsuario = async (nombre, apellido , correo , contrasena) => {
+    const httpguardarUsuario = async (correo , contrasena) => {
         const data = {
-            nombre : nombre,
-            apellido : apellido,
             correo : correo,
             contrasena : contrasena
 
@@ -50,9 +47,10 @@ const LoginPage = () => {
 
         
     }
-    const guardarUsuario = (nombre , apellido , correo , contrasena) => {console.log(
-        `nombre: ${nombre} apellido: ${apellido} correo: ${correo} password: ${contrasena}`)
-        httpguardarUsuario(nombre , apellido , correo , contrasena)
+    
+    const guardarUsuario = (correo , contrasena) => {console.log(
+        `nombre: correo: ${correo} password: ${contrasena}`)
+        httpguardarUsuario(correo , contrasena)
     }
 
    /*const httpLogin = async (correo, password) => {
@@ -78,13 +76,13 @@ const LoginPage = () => {
 
 
 return <Container>
+    <BarraIniciar></BarraIniciar>
     <Row className='mt-4'>
         <Col></Col>
         <Col>
             <Card>
                 <Card.Body>
                     <h2>Login</h2>
-                    <Image src={ `./imagenes/logo.png` }/>
                     <Form>
                         <Form.Group>
                             <Form.Label>

@@ -1,4 +1,4 @@
-import BarraIniciar from "./BarraIniciar";
+import BarraIniciar from "./Barras/BarraIniciar";
 import {Form, Button} from "react-bootstrap";
 import { useNavigate } from "react-router-dom"
 
