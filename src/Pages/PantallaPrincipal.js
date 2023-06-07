@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import BarraNavega from "./Barras/BarraNavega";
+import BarraNavega2 from "./Barras/BarraNavega2";
 import FormularioCantidad from './FormularioCantidad';
-import axios from 'axios';
 import ListaViajes from "./Datos/ListaViajes"
 
 
 
 const PPrincipal = () => {
-    let borrar
     const [listadoViajes, setListadoViajes]=useState([])
     const [datosRecividos, setDatosReciv]=useState([]) 
 
@@ -17,15 +15,28 @@ const PPrincipal = () => {
       };
 
     const httpObtenerViajes = async () =>{
-        
-        axios.post('http://localhost:4447/tour', datosRecividos)
-      .then((response) => {
-        console.log(response.data);
-        setListadoViajes(response.data)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      const data = {
+        lugar : datosRecividos[0],
+        precio : datosRecividos[1],
+        tvehiculo : datosRecividos[2]
+      } 
+      const resp = await fetch(`http://localhost:4447/usuarios`,
+        {
+            method : "POST",
+            body : JSON.stringify(data),
+            headers : {
+                "content-Type" : "application/json"
+            }
+        }
+      )
+      const dataResp = await resp.json()
+      console.log(dataResp)
+      if (dataResp.error !== "") {
+          console.error(dataResp.error)
+      }
+      //almacena la variable en 
+      localStorage.setItem('turista', dataResp)
+      setListadoViajes(dataResp)
         
     }
 
@@ -35,7 +46,7 @@ const PPrincipal = () => {
 
     return(
         <div>
-            <BarraNavega></BarraNavega>
+            <BarraNavega2></BarraNavega2>
             <FormularioCantidad datosRecividos={obtnerData}></FormularioCantidad>
             <ListaViajes></ListaViajes>
         </div>

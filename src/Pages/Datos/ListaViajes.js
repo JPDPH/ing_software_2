@@ -1,7 +1,15 @@
-import "../css/style.css"
+import { Button } from "react-bootstrap";
+import "../css/style.css";
 import React from "react";
 
 const Lista = (props) => {
+
+
+        const Reservar = async () => {
+            
+            
+        }
+
         return(
             <div>
             <br></br>
@@ -38,6 +46,7 @@ const Lista = (props) => {
                         <p>Max. Cantidad de personas: {props.cantidad}</p>
                         <p>Tipo de Vehiculo: {props.vehiculo}</p>
                         <p>Horario: 07:00 a 18:00</p>
+                        <Button variant="warning" onClick={Reservar}>Reservar</Button>
                     </div>
                 </div>
                 <br />

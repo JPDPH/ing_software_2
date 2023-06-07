@@ -1,7 +1,7 @@
 import BarraGuia from "../Barras/BarraGuia";
 import Clientes from "../Datos/Clientes";
 import React, { useState, useEffect } from 'react';
-import {obtenerUsuario} from "../iniciar_sesion";
+import {obtenerUsuario} from "../InicioSesion/iniciar_sesion";
 
 const PGuia = () =>{
 

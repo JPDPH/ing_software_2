@@ -1,4 +1,6 @@
 const BarraIniciar = () => {
+
+
     return(
         <div class="container">
             <div className="row">
@@ -19,7 +21,7 @@ const BarraIniciar = () => {
                                         <a class="nav-link" href="#">About</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Support</a>
+                                        <a class="nav-link" href="/">Support</a>
                                     </li>
                                 </ul>
                             </div>
@@ -27,7 +29,10 @@ const BarraIniciar = () => {
                     </nav>
                 </div>
 
+
             </div>
+
+            
         </div>
     );
 }

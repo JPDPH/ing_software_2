@@ -15,7 +15,7 @@ const BarraNavega = () => {
                             <div>
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
-                                        <a class="nav-link" aria-current="page" href="/">Tours</a>
+                                        <a class="nav-link" aria-current="page" href="#">Tours</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">About</a>
@@ -32,14 +32,14 @@ const BarraNavega = () => {
                 <div className="col-1">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="/sesion">Sign in</a>
+                            <a class="nav-link" href="/diversificar">Sign in</a>
                         </li>
                     </ul>   
                 </div>
                 <div className="col-1">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="/sesion">Log out</a>
+                            <a class="nav-link" href="/diversificarR">Sign up</a>
                         </li>
                     </ul>   
                 </div>

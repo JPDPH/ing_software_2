@@ -15,7 +15,7 @@ const BarraNavega2 = () => {
                             <div>
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
-                                        <a class="nav-link" aria-current="page" href="/">Tours</a>
+                                        <a class="nav-link" aria-current="page" href="/sesion">Tours</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">About</a>
