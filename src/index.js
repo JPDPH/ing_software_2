@@ -13,15 +13,16 @@ import reportWebVitals from './reportWebVitals';
 import PantallaInicial from './Pages/PantallaInicial';
 import Diversificar from './Pages/InicioSesion/DiversificarSesion';
 import DiversificarR from './Pages/InicioSesion/DiversificarRegistro';
-import Registro from './Pages/InicioSesion/IngresarRegistro'
-import RegistroGuia from './Pages/InicioSesion/IngresarRegistroGuia'
-
+import Registro from './Pages/InicioSesion/IngresarRegistro';
+import RegistroGuia from './Pages/InicioSesion/IngresarRegistroGuia';
+import Mapas from './Pages/mapsPrueba/index';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<PantallaInicial />} />
+        <Route path='/maps' element={<Mapas />} />
         <Route path='/sesion' element={<Sesion />} />
         <Route path='/sesionGuia' element={<SesionGuia />} />
         <Route path='/guia' element={<PGuia/>}/>

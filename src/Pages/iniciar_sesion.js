@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import BarraIniciar from './Barras/BarraIniciar'
 //const usuarioC = ["alberto","123", "renato","321"]
 //const usuarioG = ["jesus","ola", "yaru","contra"]
+import { RUTA_BACKEND } from '../conf'
 import "../Clases/cliente"
 
 let sesionI = []
@@ -30,7 +31,7 @@ const LoginPage = () => {
             contrasena : contrasena
 
         }
-        const resp = await fetch(`http://localhost:4447/usuarios`,
+        const resp = await fetch(`${RUTA_BACKEND}/usuarios`,
             {
                 method : "POST",
                 body : JSON.stringify(data),
