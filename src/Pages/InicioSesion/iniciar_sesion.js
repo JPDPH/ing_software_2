@@ -6,15 +6,9 @@ import BarraIniciar from '../Barras/BarraIniciar'
 //const usuarioG = ["jesus","ola", "yaru","contra"]
 import "../../Clases/cliente"
 
-let sesionI = []
-
-export function obtenerUsuario(){
-    const data = sesionI
-    return data;
-}
 
 const LoginPage = () => {
-    const [correo, setCorreo] = useState("")
+    const [correos, setCorreo] = useState("")
     const [contrasena, setContrasena] = useState("")
 
     
@@ -26,61 +20,35 @@ const LoginPage = () => {
         navigate('/registro')
     }
 
-    function pantallaTurista (){
+    function continuar(){
         navigate('/cliente')
     }
 
-    const httpguardarUsuario = async (correo , contrasena) => {
-        const data = {
-            correo : correo,
-            contrasena : contrasena
 
+    const httpguardarUsuario = async () => {
+        const data = {
+            correo: correos,
+            contrasenia: contrasena,
         }
-        const resp = await fetch(`http://localhost:4447/usuarios`,
+
+        try{
+            const respons = await fetch(`http://localhost:4447/turistaSesion`,
             {
                 method : "POST",
                 body : JSON.stringify(data),
                 headers : {
                     "content-Type" : "application/json"
-                }
-            }
-        )
-        const dataResp = await resp.json()
-        console.log(dataResp)
-        if (dataResp.error !== "") {
-            console.error(dataResp.error)
-        }
-        //almacena la variable en 
-        localStorage.setItem('turista', dataResp)
-        
-    }
-    
-    const guardarUsuario = (correo , contrasena) => {console.log(
-        `nombre: correo: ${correo} password: ${contrasena}`)
-        httpguardarUsuario(correo , contrasena)
-    }
+                },
+            });
 
-   /*const httpLogin = async (correo, password) => {
-        const resp = await fetch(` ${ RUTA_BACKEND}/login`, {
-        method : "POST",
-        body : JSON.stringify({
-            correo: correo,
-            contrasena : contrasena
-        }),
-        headers : {"Content-type": "application/json"
-    }
-    })
-    const data = await resp.json()
-     if(data.error === ""){
-        //login fue correcto
-        localStorage.setItem( "TOKEN" , data.token)
-        navigate('/Principal')
-
-     }else{
-        //login fue incorrecto
-     }
-     */
-
+            const responseData = await respons.json();
+            console.log('Respuesta del backend:', responseData);
+            localStorage.setItem('turista', responseData[0])
+            continuar()
+        }catch(error) {
+            console.error('Error al enviar datos al backend:', error);
+            // Realiza cualquier acción adicional en caso de error
+            };}
 
 return <Container>
     <BarraIniciar></BarraIniciar>
@@ -97,7 +65,7 @@ return <Container>
                             </Form.Label>
                             <Form.Control 
                             type='email'
-                            value= { correo }
+                            value= { correos }
                             onChange = { (e) => setCorreo(e.target.value) }/>
                         </Form.Group>
                         <Form.Group>
@@ -109,7 +77,8 @@ return <Container>
                             onChange = { (e) => setContrasena(e.target.value) }/>
                         </Form.Group>
                         <Button className='mt-3' variant='warning'
-                        onClick = { pantallaTurista}>Login</Button>
+                        onClick = { httpguardarUsuario}>Login</Button>
+                        
                         <p></p>
                         <Button className='mt-3' variant='warning'
                         onClick = { navegar }>Crear cuenta</Button>

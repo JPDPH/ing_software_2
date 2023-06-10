@@ -92,7 +92,7 @@ const PPrincipal = () => {
     
     const httpObtenerViajes = async () =>{
       try{
-        const response = await fetch(`http://localhost:4447/servicios`);
+        const response = await fetch(`http://localhost:4447/servicio`);
         const jsonData = await response.json();
         setDatosReciv(jsonData)
       }catch(error){

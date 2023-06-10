@@ -1,6 +1,14 @@
-
+import { useNavigate } from "react-router-dom"
 
 const BarraNavega2 = () => {
+
+    const navigate = useNavigate()
+
+    function fin (){
+        localStorage.removeItem('turista')
+        navigate('/')
+    }
+
     return(
         <div class="container">
             <div className="row">
@@ -32,7 +40,7 @@ const BarraNavega2 = () => {
                 <div className="col-2">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="/">Log out</a>
+                            <a class="nav-link" href="#" onClick={fin}>Log out</a>
                         </li>
                     </ul>
                 </div>
