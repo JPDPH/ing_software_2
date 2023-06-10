@@ -11,21 +11,24 @@ const Resgitro = () => {
     const [apellido, setApellido] = useState("")
     const [telefono, setTelefono] = useState("")
 
+    
     const navigate = useNavigate()
+
+
 
     function iniciarSesion () {
         navigate('/sesion')
     }
 
-    const httpguardarUsuario = async (correo , contra, nombre, apellido, telefono) => {
+    const httpguardarUsuario = () => {
         const data = {
-            correo : correo,
-            contra : contra,
             nombre : nombre,
             apellido : apellido,
-            telefono : telefono
+            correo : correo,
+            telefono : telefono,
+            contrasenia : contra,
         }
-        const resp = await fetch(`http://localhost:4447/usuarios`,
+        fetch(`http://localhost:4447/turista`,
             {
                 method : "POST",
                 body : JSON.stringify(data),
@@ -34,20 +37,31 @@ const Resgitro = () => {
                 }
             }
         )
-        const dataResp = await resp.json()
-        console.log(dataResp)
-        if (dataResp.error !== "") {
-            console.error(dataResp.error)
-        }
 
+        .then(response => response.json())
+        .then(data => {
+        console.log('Respuesta del backend:', data);
+        // Realiza cualquier acción adicional con la respuesta del backend
+        setCorreo("");
+        setContra("");
+        setNombre("");
+        setApellido("");
+        setTelefono("");
+        window.alert("Tu resgistro fue satisfactorio, puedes iniciar sesion");
+        iniciarSesion();
+        })
+        .catch(error => {
+        console.error('Error al enviar datos al backend:', error);
+        // Realiza cualquier acción adicional en caso de error
+        });
         
     }
-    
+    /*
     const guardarUsuario = (correo , contra, nombre, apellido, telefono) => {console.log(
         `nombre: correo: ${correo} password: ${contra}`)
         httpguardarUsuario(correo , contra, nombre, apellido, telefono)
     }
-
+    */
 
 return <Container>
     <BarraIniciar></BarraIniciar>
@@ -100,7 +114,7 @@ return <Container>
                             onChange = { (e) => setContra(e.target.value) }/>
                         </Form.Group>
                         <Button className='mt-3' variant='warning'
-                        onClick = { iniciarSesion }>Crear cuenta</Button>
+                        onClick = { httpguardarUsuario }>Crear cuenta</Button>
                     </Form>
                 </Card.Body>
             </Card>

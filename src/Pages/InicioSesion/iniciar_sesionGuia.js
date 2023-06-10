@@ -24,7 +24,9 @@ const LoginPageGuia = () => {
         navigate('/guia')
     }
 
-
+    function registroG (){
+        navigate('/registroGuia')
+    }
 
     const httpguardarUsuario = async (correo , contrasena) => {
         const data = {
@@ -46,8 +48,9 @@ const LoginPageGuia = () => {
         if (dataResp.error !== "") {
             console.error(dataResp.error)
         }
-
-        
+        //almacena la variable en 
+        localStorage.setItem('guia', dataResp)
+        navegar()
     }
     
     const guardarUsuario = (correo , contrasena) => {console.log(
@@ -104,7 +107,10 @@ return <Container>
                             onChange = { (e) => setContrasena(e.target.value) }/>
                         </Form.Group>
                         <Button className='mt-3' variant='warning'
-                        onClick = { navegar }>Crear cuenta</Button>
+                        onClick = { navegar }>Login</Button>
+                        <p></p>
+                        <Button className='mt-3' variant='warning'
+                        onClick = { registroG }>Crear cuenta</Button>
                     </Form>
                 </Card.Body>
             </Card>

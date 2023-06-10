@@ -1,109 +1,76 @@
 import BarraGuia from "../Barras/BarraGuia";
-import Clientes from "../Datos/Clientes";
 import React, { useState, useEffect } from 'react';
 import {obtenerUsuario} from "../InicioSesion/iniciar_sesion";
 
+
+
+const Clientes = ({item}) =>{
+    return(
+        <div>
+            <div className="container">
+                <div className="row">
+                    <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3">
+                    <img src="https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png" className="img-fluid" alt="Image" />
+                    </div>
+                    <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 shadow">
+                        <h1 className="display-7">Viaja {item.nombre}</h1>
+                        <h5>Informacion del Cliente:</h5>
+                        <p className="text-justify">
+                            Nombre: {item.nombre}
+                        </p>
+                        <p className="text-justify">
+                            Apellidos: {item.apellido}
+                        </p>
+                        <p className="text-justify">
+                            Número: {item.nombre}
+                        </p>
+                        <p className="text-justify">
+                            Cantidad de Personas: {item.nombre}
+                        </p>
+                        <p className="text-justify"> 
+                            Horario: 07:00 a 18:00
+                        </p>
+                    </div>
+                </div>
+                <br />
+
+            </div>
+        </div>
+    );
+
+}
+
+
+
+
+
 const PGuia = () =>{
 
-    let usuarioActual= []
-    usuarioActual =obtenerUsuario()
-    console.log(usuarioActual)
-    
-   
-    //lista de clientes 
-    const [listadoClientes, setListadoClientes]=useState([])
-    const [zona, setZona]=useState([])
-    const [vehiculo, setVehiculo]=useState([])
-    const [tour, setTuor] = useState([])
+    const [clientes,setClientes] = useState([]);
 
-    const httpObtenerTour = async () =>{
-        const resp = await fetch("http://localhost:4447/tour")
-        const data = await resp.json()
-        setTuor(data)
-        
-
-    }
-
-    const httpObtenerClientes = async () =>{
-        const resp = await fetch("http://localhost:4447/turista")
-        const data = await resp.json()
-        setListadoClientes(data)
-    }
-
-    const httpObtenerZona = async () =>{
-        const resp = await fetch("http://localhost:4447/zona")
-        const data = await resp.json()
-        setZona(data)
-    }
-
-    const httpObtenerVehiculo = async () =>{
-        const resp = await fetch("http://localhost:4447/vehiculo")
-        const data = await resp.json()
-        setVehiculo(data)
-    }
-
-    
-   
-    
-    /*
-useEffect(()=>{
-        httpObtenerClientes()
-        httpObtenerZona()
-        httpObtenerVehiculo()
-        httpObtenerTour()
+    useEffect(()=>{
+        obtenerClientes()
     },[])
 
-     let listaInfoCliente = []
-    console.log(listadoClientes)
-    console.log(tour)
-    
-    let aux = 0
-    for(let i = 0; i<tour.length; i++){
-        if(tour[i].id_guia==usuarioActual[0].id){
-            aux = i
-        }
-    }
-    console.log(tour[aux])
-    let aux4 = 0
-    for(let i = 0; i<listadoClientes.length; i++){
-        if(tour[aux].id_turista==listadoClientes[i].id){
-            aux4 = i
-        }
-    }
-listaInfoCliente[0] = {n:listadoClientes[aux4].nombre, 
-        a:listadoClientes[aux4].apellido,
-        nu:listadoClientes[aux4].telefono,
-        }
 
-    <div>
-                {
-                    listaInfoCliente.map (cliente => {
-                        return(
-                            <Clientes
-                                lugar={cliente.v} 
-                                nombre={cliente.n} 
-                                apellido={cliente.a} 
-                                numero={cliente.nu} 
-                                cantidad={cliente.c} 
-                            ></Clientes>
-                        );
-                    })
-                }
-    </div>
-        
-    */
-    
-    
-    
-
-    
+    const obtenerClientes = async () => {
+        try{
+            const response = await fetch(`http://localhost:4447/turista`);
+            const jsonData = await response.json();
+            setClientes(jsonData)
+          }catch(error){
+            console.log('Error al solicitar al backend', error)
+          }
+    }
 
     return(
         <div>
             <BarraGuia></BarraGuia>
-            <Clientes></Clientes>
-            <Clientes></Clientes>
-            <Clientes></Clientes>
+            {
+                clientes.map((item)=>(
+                    <Clientes key={item.telefono} item={item}></Clientes>
+                ))
+            }
         </div>
 
     );
