@@ -5,7 +5,7 @@ const BarraGuia = () => {
     const navigate = useNavigate()
 
     function fin (){
-        localStorage.removeItem('turista')
+        localStorage.removeItem('guia')
         navigate('/')
     }
 

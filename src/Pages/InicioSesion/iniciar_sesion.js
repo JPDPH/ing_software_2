@@ -43,8 +43,15 @@ const LoginPage = () => {
 
             const responseData = await respons.json();
             console.log('Respuesta del backend:', responseData);
-            localStorage.setItem('turista', responseData[0])
-            continuar()
+            if(responseData[0]!="null"){
+                localStorage.setItem('turista', responseData[0]);
+                continuar()
+            }else{
+                window.alert("No se encuentra ese usuario, por favor vuelva a intentarlo.")
+                setCorreo("");
+                setContrasena("");
+            }
+            
         }catch(error) {
             console.error('Error al enviar datos al backend:', error);
             // Realiza cualquier acción adicional en caso de error

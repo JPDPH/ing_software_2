@@ -1,7 +1,7 @@
 import BarraGuia from "../Barras/BarraGuia";
 import React, { useState, useEffect } from 'react';
 import {obtenerUsuario} from "../InicioSesion/iniciar_sesion";
-
+import { useNavigate } from "react-router-dom"
 
 
 const Clientes = ({item}) =>{
@@ -49,10 +49,18 @@ const PGuia = () =>{
     const [clientes,setClientes] = useState([]);
 
     useEffect(()=>{
-        obtenerClientes()
+        obtenerClientes();
+        verificar()
     },[])
 
+    const navigate = useNavigate()
 
+    const verificar = () => {
+        if(localStorage.getItem('guia')==null){
+          navigate('/')
+        }
+    }
+    
     const obtenerClientes = async () => {
         try{
             const response = await fetch(`http://localhost:4447/turista`);

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from "react-bootstrap";
 import BarraNavega2 from "./Barras/BarraNavega2";
 import FormularioCantidad from './FormularioCantidad';
-import ListaViajes from "./Datos/ListaViajes"
+import { useNavigate } from "react-router-dom"
 
 const Listviajes = ({item}) => {
 
@@ -83,9 +83,18 @@ const Listviajes = ({item}) => {
 const PPrincipal = () => {
     const [datosRecividos, setDatosReciv]=useState([]); 
 
+    const navigate = useNavigate()
+
     useEffect(()=>{
-      httpObtenerViajes()
+      httpObtenerViajes();
+      verificar()
     },[])
+
+    const verificar = () => {
+      if(localStorage.getItem('turista')==null){
+        navigate('/')
+      }
+  }
 
 
     //elemento hijo

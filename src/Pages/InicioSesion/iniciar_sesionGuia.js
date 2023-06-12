@@ -20,7 +20,7 @@ const LoginPageGuia = () => {
     const navigate = useNavigate()
     
     
-    function navegar (){
+    function continuar (){
         navigate('/guia')
     }
 
@@ -28,36 +28,40 @@ const LoginPageGuia = () => {
         navigate('/registroGuia')
     }
 
-    const httpguardarUsuario = async (correo , contrasena) => {
+    const httpguardarUsuario = async () => {
         const data = {
-            correo : correo,
-            contrasena : contrasena
-
+            correo: correo,
+            contrasenia: contrasena,
         }
-        const resp = await fetch(`http://localhost:4447/usuarios`,
+
+        try{
+            const respons = await fetch(`http://localhost:4447/guiaSesion`,
             {
                 method : "POST",
                 body : JSON.stringify(data),
                 headers : {
                     "content-Type" : "application/json"
-                }
+                },
+            });
+
+            const responseData = await respons.json();
+            console.log('Respuesta del backend:', responseData);
+            if(responseData[0]!="null"){
+                localStorage.setItem('guia', responseData[0]);
+                continuar()
+            }else{
+                setCorreo("");
+                setContrasena("");
+                window.alert("No se encuentra ese usuario, por favor vuelva a intentarlo.");
+                
             }
-        )
-        const dataResp = await resp.json()
-        console.log(dataResp)
-        if (dataResp.error !== "") {
-            console.error(dataResp.error)
-        }
-        //almacena la variable en 
-        localStorage.setItem('guia', dataResp)
-        navegar()
+            
+        }catch(error) {
+            console.error('Error al enviar datos al backend:', error);
+            // Realiza cualquier acción adicional en caso de error
+            };
     }
     
-    const guardarUsuario = (correo , contrasena) => {console.log(
-        `nombre: correo: ${correo} password: ${contrasena}`)
-        httpguardarUsuario(correo , contrasena)
-    }
-
    /*const httpLogin = async (correo, password) => {
         const resp = await fetch(` ${ RUTA_BACKEND}/login`, {
         method : "POST",
@@ -107,7 +111,7 @@ return <Container>
                             onChange = { (e) => setContrasena(e.target.value) }/>
                         </Form.Group>
                         <Button className='mt-3' variant='warning'
-                        onClick = { navegar }>Login</Button>
+                        onClick = { httpguardarUsuario }>Login</Button>
                         <p></p>
                         <Button className='mt-3' variant='warning'
                         onClick = { registroG }>Crear cuenta</Button>
