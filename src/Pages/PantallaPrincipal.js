@@ -7,9 +7,12 @@ import { useNavigate } from "react-router-dom"
 const Listviajes = ({item}) => {
 
   const reservar = () => {
+    let turista = localStorage.getItem('turista');
+    let tour = item.id;
+
     const reserva = {
-      turista_id : "turista",
-      servicio_id : "serversio",
+      turista_id : turista,
+      servicio_id : tour,
       nombre : "aa"
     }
     fetch(`http://localhost:4447/reserva`,
@@ -70,7 +73,7 @@ const Listviajes = ({item}) => {
                     <p>Max. Cantidad de personas: {item.monto}</p>
                     <p>Tipo de Vehiculo: {item.monto}</p>
                     <p>Horario: 07:00 a 18:00</p>
-                    <Button variant="warning" onClick={()=>{}}>Reservar</Button>
+                    <Button variant="warning" onClick={reservar}>Reservar</Button>
                 </div>
             </div>
             <br />
