@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import BarraIniciar from '../Barras/BarraIniciar'
 //const usuarioC = ["alberto","123", "renato","321"]
 //const usuarioG = ["jesus","ola", "yaru","contra"]
-import "../../Clases/cliente"
+
 
 let sesionI = []
 

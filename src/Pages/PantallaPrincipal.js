@@ -74,6 +74,8 @@ const Listviajes = ({item}) => {
                     <p>Tipo de Vehiculo: {item.monto}</p>
                     <p>Horario: 07:00 a 18:00</p>
                     <Button variant="warning" onClick={reservar}>Reservar</Button>
+                     | 
+                    <Button variant="warning" onClick={()=>{}}>Reservar</Button>
                 </div>
             </div>
             <br />

@@ -6,9 +6,9 @@ import React, { useState } from "react";
 //añadir props
 //añadir variables de estado y values onchange 
 const FormularioCantidad = (props) => {
-    const [lugar, setLugar] = useState("a") ;//destino
-    const [cantP, setCantP] = useState("a") ;//precio
-    const [tipoV, setTipoV] = useState("a") ;//categoria
+    const [lugar, setLugar] = useState("a") ;//puntaje
+    const [cantP, setCantP] = useState("a") ;//categoria
+    const [tipoV, setTipoV] = useState("a") ;//eliminar
 
     const handleChangeL =(event) =>{
         setLugar(event.target.value);
@@ -58,12 +58,12 @@ const FormularioCantidad = (props) => {
             
 
             <Form.Group className="mb-2">
-                <Form.Label>Lugar Turistico</Form.Label>
+                <Form.Label>Puntaje: </Form.Label>
                 <Form.Control type='text' onChange = { handleChangeL }/>
             </Form.Group>
             
             <Form.Group className="mb-2">
-                <Form.Label>Precio del viaje</Form.Label>
+                <Form.Label>Categoria: </Form.Label>
                 <Form.Control type='text' onChange = { handleChangeP }/>
             </Form.Group>
             <Form.Group className="mb-2">

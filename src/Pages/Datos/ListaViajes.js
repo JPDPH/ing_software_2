@@ -45,6 +45,7 @@ const Lista = (props) => {
                         <p>Tipo de Vehiculo: {props.vehiculo}</p>
                         <p>Horario: 07:00 a 18:00</p>
                         <Button variant="warning" onClick={()=>{}}>Reservar</Button>
+                        <Button variant="warning" onClick={()=>{}}>Calificar</Button>
                     </div>
                 </div>
                 <br />
