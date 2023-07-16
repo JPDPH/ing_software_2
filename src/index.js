@@ -15,6 +15,7 @@ import Diversificar from './Pages/InicioSesion/DiversificarSesion';
 import DiversificarR from './Pages/InicioSesion/DiversificarRegistro';
 import Registro from './Pages/InicioSesion/IngresarRegistro'
 import RegistroGuia from './Pages/InicioSesion/IngresarRegistroGuia'
+import Calificar from './Pages/Datos/Calificar.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -31,6 +32,7 @@ root.render(
         <Route path= '/registroGuia' element={<RegistroGuia/>}/>
         <Route path= '/diversificar' element={<Diversificar/>}/>
         <Route path= '/diversificarR' element={<DiversificarR/>}/>
+        <Route path= '/calificar' element={<Calificar/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

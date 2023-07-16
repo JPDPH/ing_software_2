@@ -5,10 +5,18 @@ import FormularioCantidad from './FormularioCantidad';
 import { useNavigate } from "react-router-dom"
 
 const Listviajes = ({item}) => {
+  const [guiaRec, setguiaRec]=useState({}); 
+
+  const navigater = useNavigate()
+
+  useEffect(()=>{
+    guia();
+  },[])
 
   const reservar = () => {
     let turista = localStorage.getItem('turista');
     let tour = item.id;
+    
 
     const reserva = {
       turista_id : turista,
@@ -37,6 +45,41 @@ const Listviajes = ({item}) => {
         });
     }
 
+  const guia = () => {
+    let guiaId = item.id_guia
+    const verificarGuia = {
+      guia : guiaId,
+    }
+    fetch(`http://localhost:4447/infoturista`,
+            {
+                method : "POST",
+                body : JSON.stringify(verificarGuia),
+                headers : {
+                    "content-Type" : "application/json"
+                }
+            }
+        )
+
+        .then(response => response.json())
+        .then(reserva => {
+        console.log('Respuesta del backend:', reserva);
+        // Realiza cualquier acción adicional con la respuesta del backend
+        setguiaRec(reserva)
+        
+        })
+        .catch(error => {
+        console.error('Error al enviar datos al backend:', error);
+        // Realiza cualquier acción adicional en caso de error
+        });
+
+  }
+
+  const calf = () => {
+  localStorage.setItem('servicio', item.id)
+  navigater('/calificar')
+
+  }
+
   return (
     <div>
       <br></br>
@@ -46,36 +89,35 @@ const Listviajes = ({item}) => {
                     <img src="https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png" className="img-fluid" alt="Image" />
                 </div>
                 <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3 shadow">
-                    <h1 className="display-7">Viaja {item.monto}</h1>
+                    <h1 className="display-7">Viaja {item.categoria}</h1>
                     <h5>Informacion del Guia:</h5>
                     <p className="text-justify">
-                        Nombre: {item.monto}
+                        Nombre: {guiaRec.nombre}
                     </p>
                     <p className="text-justify">
-                        Apellidos: {item.monto}
+                        Apellidos: {guiaRec.apellido}
                     </p>
                     <p className="text-justify">
-                        Número: {item.monto}
+                        Número: {guiaRec.telefono}
                     </p>
                     <p className="text-justify">
-                        Calificacion: ⭐⭐⭐⭐⭐
+                        Correo: {guiaRec.correo}
                     </p>
                 </div>
                 <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 shadow">
                     <h1 className="display-7">Informacion del Servicio</h1>
                     <p className="text-justify">
-                        El recorrido comienza de:
+                    <b>El recorrido comienza de:</b>
                     </p>
                     <p className="text-justify">
-                        Punto A - Punto B - Punto C - Punto A - Punto B - Punto C - Punto A - Punto B - Punto C
-                        Punto A - Punto B - Punto C - Punto B - Punto A - Punto B - Punto C - Punto A - Punto B
+                      {item.estado}
                     </p>
-                    <p>Max. Cantidad de personas: {item.monto}</p>
-                    <p>Tipo de Vehiculo: {item.monto}</p>
-                    <p>Horario: 07:00 a 18:00</p>
+                    <p> <b> Costo del servicio:</b> {item.monto} soles.</p>
+                    <p> <b>Calificacion:</b>  {item.puntaje}</p>
+                    <p> <b>Horario:</b>  Mañana</p>
                     <Button variant="warning" onClick={reservar}>Reservar</Button>
                      | 
-                    <Button variant="warning" onClick={()=>{}}>Reservar</Button>
+                    <Button variant="warning" onClick={calf}>Calificar</Button>
                 </div>
             </div>
             <br />
